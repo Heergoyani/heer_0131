@@ -25,3 +25,5 @@ ui <- fluidPage(
   #THE FOLLOWING PLOT SHOULD COME IN TAB4
   plotOutput("alllinestrend")
 )
+
+SPM,,,,,,,,,,,JIGU HEMI HEER
