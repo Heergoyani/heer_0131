@@ -1,5 +1,3 @@
-library(shiny)
-library(shinythemes)
 source("listfiles.R")
 
 ui <- fluidPage(
@@ -13,7 +11,11 @@ ui <- fluidPage(
     sidebarPanel(
       #headerPanel("Stocks"),
       uiOutput("stocknames",align="center"),
-      actionButton("calculate","Calculate winning model")
+      actionButton("calculate","Calculate winning model"),
+      textInput("mynumber",label = "Enter a number",placeholder = "Number"),
+      textInput("mynumber2",label = "Enter another number",placeholder = "Number 2"),
+      actionButton("cal",label = "Calculate"),
+      textOutput("myresult")
     ),
     mainPanel(
       #actionButton("calculate","Calculate"),

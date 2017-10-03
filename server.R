@@ -1,4 +1,4 @@
-library(shiny)
+source("script.R")         #userdefined file maths calculation
 source("listfiles.R")
 source("runner.R")
 source("polynomialplot.R")
@@ -61,9 +61,9 @@ server <- function(input,output){
     
     #THE FOLLOWING LINES RENDER A PLOT TO THE APP
     ########################################################################      
-    output$polytrend <- renderPlot({
-      return(polynomialplot(best_predict()))
-    })
+    #output$polytrend <- renderPlot({
+    #  return(polynomialplot(best_predict()))
+    #})
     
     
     ########################################################################
@@ -136,6 +136,13 @@ server <- function(input,output){
         })
       }
       #return(output$display)
+    })
+    
+    observeEvent(input$cal,{
+      ##print("test")
+      output$myresult<-renderText({
+        mysum(as.numeric(input$mynumber),as.numeric(input$mynumber2))
+      })
     })
 }
 
