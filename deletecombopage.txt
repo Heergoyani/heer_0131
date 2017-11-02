@@ -1,0 +1,56 @@
+Controller*************************************
+
+public function delete($tbl, $id) {
+
+        if ($tbl == "tbl_question") {
+            $dt['question_id'] = $id;
+            $this->CompanyModel->my_delete($tbl, $dt);
+            redirect("Company/manageque");
+        }
+        if ($tbl == "vacancy") {
+            $dt['vacancy_id'] = $id;
+            $this->CompanyModel->my_delete($tbl, $dt);
+            redirect("Company/disvacancy");
+        }
+    }
+
+
+MOdel****************************************
+public function my_delete($tbl,$where) {
+        $q = "DELETE FROM `$tbl` ";
+        
+        if(isset($where))
+        {
+            $q .= " WHERE ";
+            foreach ($where as $key => $value) {
+                $q .= "`$key` = '$value' AND ";
+            }
+        }
+        $q = rtrim($q,"AND ");
+        $query=  $this->db->query($q);
+        return $query;
+    }
+
+View*********************************************
+<tbody>
+                                                    <?php
+                                                    $count = 0;
+                                                    foreach ($d as $row) {
+                                                        $count++;
+                                                        ?>
+                                                        <tr>
+                                                            <th><?php echo $count; ?></th>
+                                                            <td><?php echo $row['sname']; ?></td>
+                                                            <td><?php echo $row['que']; ?></td>
+                                                            <td><?php echo $row['ans']; ?></td>
+                                                            <td><?php echo $row['op1']; ?></td>
+                                                            <td><?php echo $row['op2']; ?></td>
+                                                            <td><?php echo $row['op3']; ?></td>
+                                                            <td><?php echo $row['op4']; ?></td>
+                                                            <td><a href="<?php echo base_url(); ?>index.php/Company/delete/tbl_question/<?php echo $row['qid']; ?>"><i class="fa fa-eraser"></i></a></td>
+                                                            <td><a href="<?php echo base_url(); ?>index.php/Company/update/tbl_question/<?php echo $row['qid']; ?>"><i class="fa fa-pencil"></i></a></td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                    ?>    
+                                                </tbody>
